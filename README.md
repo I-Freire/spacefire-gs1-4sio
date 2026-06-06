@@ -216,7 +216,7 @@ Entre os benefícios esperados estão:
 Projeto desenvolvido para a Global Solution FIAP 2026.
 
 Tema: Space Connect
-
+Integrantes: Isabella Freire, Yasmin Santiago, Heloísa Caffaro e Livia Ogawa
 Turma: 4SIOA
 
 ---

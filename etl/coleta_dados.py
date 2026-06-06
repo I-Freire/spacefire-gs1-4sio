@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 import pandas as pd
 import os
 
-# Cria pasta caso não exista
 os.makedirs("data/raw", exist_ok=True)
 
 def baixar_csv(data):
@@ -24,30 +23,20 @@ def baixar_csv(data):
             index=False
         )
 
-        print(f"✅ Download concluído!")
-        print(f"📊 {len(df)} registros baixados.")
-        print(f"📅 Data dos dados: {data_formatada}")
-
+        print(f"✅ {len(df)} registros baixados.")
         return True
 
     except Exception as erro:
-        print(f"❌ Arquivo não encontrado para {data_formatada}")
-        print(f"Erro: {erro}")
+        print(f"❌ Falha: {erro}")
         return False
 
 
-# tenta hoje
 hoje = datetime.now()
 
-if baixar_csv(hoje):
-    exit()
+if not baixar_csv(hoje):
+    ontem = hoje - timedelta(days=1)
 
-# tenta ontem
-ontem = hoje - timedelta(days=1)
-
-if baixar_csv(ontem):
-    exit()
-
-raise Exception(
-    "Não foi possível baixar os dados do INPE."
-)
+    if not baixar_csv(ontem):
+        raise Exception(
+            "Não foi possível obter dados do INPE."
+        )
